@@ -1,0 +1,2 @@
+set ftp:ssl-force on
+set ssl:verify-certificate on
