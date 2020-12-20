@@ -1,4 +1,4 @@
-# [ft_services] vsftpdにlftpで接続した後コンテナが終了してしまう
+# [解決済み] ft_services: vsftpdのコンテナにlftpで接続した後コンテナが終了してしまう
 
 ## 環境
 
@@ -10,7 +10,17 @@ LFTP Version 4.8.1
 
 vsftpdのコンテナにlftpで接続し、コマンドを実行した後exitすると、コンテナが Status Exited (139) で終了してしまう。
 
-## 再現手順
+## 解決方法
+
+CMD で直接 vsftpd を起動するのではなく、スクリプト経由で vsftpd を起動する。
+
+以下の手順実施後、exitしないことを確認。
+
+- `/usr/sbin/vsftpd /etc/vsftpd/vsftpd.conf` するスクリプト start.sh を作成。
+- start.sh をimageにCOPY
+- CMD で start.sh を呼び出すように
+
+## 事象の再現手順
 
 1. リポジトリをcloneする
 
